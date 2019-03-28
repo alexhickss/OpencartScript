@@ -3,7 +3,11 @@
 #Folder name to drop opencart into
 echo "please enter folder name"
 read fname
-sudo mkdir -p /var/www/$fname/public_html
+directory=/var/www/$fname/public_html
+if [ ! -d "$directory" ]; then
+ sudo mkdir -p $directory
+fi
+
 
 #download opencart to directory then delete files in tmp
 cd /tmp
