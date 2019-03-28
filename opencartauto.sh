@@ -19,3 +19,13 @@ sudo cp /var/www/$fname/public_html/admin/config-dist.php /var/www/$fname/public
 #change ownership
 sudo chown -R www-data:www-data /var/www/$fname
 sudo chmod 755 -R /var/www/$fname
+
+#SQL to create opencart database
+dname=_db
+dbname=$fname$dname
+
+mysql -u root -p<<MYSQL_SCRIPT
+CREATE DATABASE $dbname;
+GRANT ALL PRIVILEGES ON $dbname.* TO 'localuser'@'localhost';
+FLUSH PRIVILEGES;
+MYSQL_SCRIPT
